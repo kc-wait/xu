@@ -1,0 +1,156 @@
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f0f0;
+    padding: 50px 0;
+}
+
+/* 时间轴容器 */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;          /* 启用 Flex 布局 */
+    flex-direction: column; /* 垂直排列子项 */
+}
+
+/* 时间轴中线（装饰线） */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #ff6b6b;
+    transform: translateX(-50%);
+}
+
+/* 单个时间节点容器 */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;          /* 启用 Flex 实现左右交替 */
+    justify-content: flex-start; /* 默认左对齐 */
+    margin: 40px 0;
+    flex-direction: column;
+    width: 100%;
+}
+.timeline-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.timeline-item:nth-child(odd) .item-content {
+    transform: translateX(-50px);
+}
+/* 左右交替布局 */
+.timeline-item:nth-child(even) .item-content {
+    transform: translateX(50px);
+    margin-left: auto;      /* 偶数项右对齐 */
+}
+.timeline-item.active .item-content {
+    transform: translateX(0);
+}
+
+/* 内容区块样式 */
+.item-content {
+    width: 80%;
+    margin: 10px auto !important;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    position: relative;
+    transition: transform 0.6s, opacity 0.6s;
+}
+
+/* 添加小箭头 */
+.item-content::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+}
+
+/* 左侧箭头 */
+.left::after {
+    right: -20px;
+    border-left-color: white;
+}
+
+/* 右侧箭头 */
+.right::after {
+    left: -20px;
+    border-right-color: white;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 15% !important; /* 中线左移 */
+    }
+
+    .item-content {
+        width: 90% !important;
+        margin-left: 15% !important; /* 强制左侧排列 */
+        font-size: 16px;
+    }
+
+    .item-content::after {
+        left: -20px; /* 统一左侧箭头 */
+        border-right-color: white;
+        border-left-color: transparent;
+    }
+}
+p{
+    font-family: '沐瑶随心手写体', cursive, sans-serif;
+}
+.nav-button {
+    text-align: center;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.timeline-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    min-width: 120px;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: '沐瑶随心手写体', cursive;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+    border: 2px solid #ff4757;
+}
+
+/* 悬停效果 */
+.timeline-btn:hover {
+    background: #ff4757;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,71,87,0.4);
+}
+
+/* 点击效果 */
+.timeline-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255,71,87,0.3);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .timeline-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>永恒的爱</title>
+    <link rel="stylesheet" href="./永远爱你.css">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 容器样式 */
+        .love-box {
+            position: relative;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 心跳动画 */
+        .heart {
+            font-size: 100px;
+            color: #ff6b6b;
+            animation: heartbeat 1.2s infinite;
+            text-shadow: 0 0 20px rgba(255,107,107,0.5);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+        }
+
+        /* 文字动画 */
+        .message {
+            font-family: '沐瑶随心手写体', cursive;
+            font-size: 32px;
+            color: #2d3436;
+            margin: 20px 0;
+            opacity: 0;
+            animation: textIn 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes textIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 背景装饰 */
+        .deco {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* 飘落花瓣 */
+        .petal {
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .message {
+                font-size: 24px;
+            }
+            .heart {
+                font-size: 80px;
+            }
+        }
+
+        /* 提示框样式 */
+        .hint {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .hint:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundAudio">
+        <source src="./obj_wo3DlMOGwrbDjj7DisKw_30094362641_407a_caa7_34b6_8c4048342e9af1d7bd296233ec767daf.mp3" type="audio/mpeg">
+    </audio>
+    <!-- 飘落花瓣 -->
+    <div class="deco petal" style="left: 10%; animation-duration: 8s;"></div>
+    <div class="deco petal" style="left: 30%; animation-duration: 10s;"></div>
+    <div class="deco petal" style="left: 70%; animation-duration: 12s;"></div>
+    
+    <!-- 主要内容 -->
+    <div class="love-box">
+        <div class="heart">❤️</div>
+        <p class="message">愿健康常伴你左右</p>
+        <p class="message">让幸福永驻你心间</p>
+        <p class="message">我会永远珍惜你</p>
+        <p class="message">爱你直到时光尽头</p>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="hint">点击屏幕播放音乐</div>
+
+    <script>
+        // 动态创建花瓣
+        function createPetals() {
+            const container = document.body;
+            for(let i=0; i<15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'deco petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petal.style.animationDuration = 8 + Math.random() * 5 + 's';
+                container.appendChild(petal);
+            }
+        }
+        createPetals();
+
+        // 点击页面播放音乐一次
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('backgroundAudio');
+            audio.play().then(() => {
+                // 播放完成后移除音频元素
+                audio.addEventListener('ended', function() {
+                    audio.remove();
+                }, { once: true });
+            });
+            // 点击后隐藏提示框
+            document.querySelector('.hint').style.display = 'none';
+        }, { once: true }); // once: true 表示这个事件只触发一次
+
+        // 点击页面产生火花效果
+        document.body.addEventListener('click', function(e) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 1000);
+        });
+    </script>
+    <a href="./生日快乐.html" class="back-btn">返回首页</a>
+</body>
+</html>

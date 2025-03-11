@@ -1,0 +1,33 @@
+/* 密码页.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box {
+    margin: auto;
+    width: 100%;
+    max-width: 450px;
+    font-size: 5vw;
+    min-height: 80vh;
+    background-color: pink;
+    border: 2px solid #ff69b4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* 关键调整 */
+    align-items: center;
+    padding: 5%;
+}
+
+.birthday-text {
+    width: 100%;
+    text-align: center;  /* 文字居中 */
+    color: #ff1493;
+    font-weight: bold;
+    font-family: '沐瑶随心手写体', cursive, sans-serif;
+    font-size: 50px;
+    text-shadow: 2px 2px 2px rgba(255,255,255,0.5);
+    margin-top: 20px;  /* 与蛋糕保持间距 */
+    margin-bottom: 20px;
+}

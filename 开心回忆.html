@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>开心回忆</title>
+    <link rel="stylesheet" href="./开心回忆.css">
+</head>
+<body>
+    <!-- 时间轴容器 -->
+    <div class="timeline">
+        <!-- 时间轴中线 -->
+        <div class="timeline-line"></div>
+
+        <!-- 时间轴项目 -->
+        <div class="timeline-item">
+            <div class="item-content left">
+                <h3>2025.2.21</h3>
+                <p>我们开始了这段关系，如果用我曾经所想来说的话，我们启航啦，踏上探索爱情的旅程。宝宝说想要把自己脑子里的不愉快全部消除</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="item-content right">
+                <h3>2025.2.23</h3>
+                <p>今天一起玩了一张名为蓝色系跑酷的地图，而且在小红书上恰好刷到作者啦</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="item-content left">
+                <h3>2025.2.27</h3>
+                <p>弃捐勿复道，努力加餐饭</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="item-content right">
+                <h3>2025.3.1</h3>
+                <p>互送礼物，宝宝画了一只小猫（本作者评价不如我的歪头猫，因为我的有小爱心！）</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="item-content left">
+                <h3>2025.3.2</h3>
+                <p>今天玩迷你世界，用本作者蹩脚的电路搭起来一个I LOVE YOU的图案，宝宝在后面添加了一个520。当然啦，宝宝自己也造了很多建筑，非常有创意，本作者十分羡慕。据说，宝宝是在捣乱，嘿嘿，这可不是本作者说的。</p>
+            </div>
+        </div>
+    </div>
+    <div class="nav-button">
+        <a href="./永远爱你.html" class="timeline-btn">
+            到最后
+        </a>
+    </div>
+    <script>
+        // 页面加载后触发动画
+        window.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.timeline-item');
+            
+            // 逐个激活动画
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('active');
+                }, index * 1000); // 每个节点间隔300ms
+            });
+        });
+        </script>
+</body>
+</html>

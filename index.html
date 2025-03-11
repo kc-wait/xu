@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>生日惊喜</title>
+    <link rel="stylesheet" href="./生日快乐.css">
+    <style>
+        a {
+    text-decoration: none;
+}
+           .enter-button {
+            padding: 15px 40px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-family: '沐瑶随心手写体', cursive, sans-serif;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,105,180,0.3);
+            position: relative;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        /* 悬浮效果 */
+        .enter-button:hover {
+            background: #ff1493;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,20,147,0.4);
+        }
+
+        /* 点击效果 */
+        .enter-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(255,20,147,0.3);
+        }
+
+        /* 流光动画 */
+        .enter-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255,255,255,0.3), 
+                transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+        /* 新增蛋糕动画样式 */
+        .cake-container {
+            width: 100%;
+            height: 300px;  /* 固定蛋糕区域高度 */
+            position: relative;
+        }
+
+        .cake {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+        }
+
+        /* 蛋糕底座 */
+        .base {
+            width: 160px;
+            height: 80px;
+            background: #f8d7da;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* 蜡烛 */
+        .candle {
+            width: 12px;
+            height: 60px;
+            background: #ffd700;
+            position: absolute;
+            left: calc(50% - 6px);  /* 精准居中 */
+            top: -40px;
+        }
+
+        /* 火焰动画 */
+        .flame {
+            width: 10px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flame 0.8s infinite alternate;
+        }
+
+        @keyframes flame {
+            0% { transform: translate(-50%, 0) scale(1); }
+            100% { transform: translate(-50%, -5px) scale(1.1); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #ffd700; }
+            100% { box-shadow: 0 0 20px #ff6b6b; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="cake-container">
+            <div class="cake">
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="base"></div>
+            </div>
+        </div>
+        <div class="birthday-text">生日快乐</div>
+        <a href="./开心回忆.html" class="enter-button">
+            点击查看我们的回忆✨
+        </a>
+    </div>
+</body>
+</html>
